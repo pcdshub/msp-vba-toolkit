@@ -24,6 +24,7 @@ Sub ReplaceResource(ByVal res1 As Resource, ByVal res2 As Resource)
                 
                 If Not task Is Nothing And Not task.Summary Then
                     ' Set the task to be manually scheduled if it's not already
+                    ' Necssary because MSP will do wacky things with work and duration as we handover to new resource
                     If task.Manual = False Then
                         taskManual = False
                         task.Manual = True
