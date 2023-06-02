@@ -1,5 +1,5 @@
 Attribute VB_Name = "ResourceSwapCode"
-Sub ReplaceResource(ByVal res1 As Resource, ByVal res2 As Resource)
+Sub ReplaceResource(ByVal res1 As Resource, ByVal res2 As Resource, ByVal ReplaceAll as Boolean)
     Dim projApp As Application
     Dim proj As Project
     Dim resAssignment As Assignment
@@ -22,7 +22,7 @@ Sub ReplaceResource(ByVal res1 As Resource, ByVal res2 As Resource)
                 Dim task As task
                 Set task = resAssignment.task
                 
-                        If Not task Is Nothing And Not task.Summary And task.Active And Not task.PercentWorkComplete = 100 Then
+                    If Not task Is Nothing And Not task.Summary And ( ReplaceAll Or (task.Active And task.PercentWorkComplete < 100) ) Then
                     ' Set the task to be manually scheduled if it's not already
                     ' Necssary because MSP will do wacky things with work and duration as we handover to new resource
                     If task.Manual = False Then
