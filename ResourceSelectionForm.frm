@@ -17,6 +17,7 @@ Attribute VB_Exposed = False
 ' Module-level variables
 Dim SelectedResource1 As Resource
 Dim SelectedResource2 As Resource
+Dim ReplaceAll As Boolean
 
 Private Sub Label1_Click()
 
@@ -39,10 +40,11 @@ Private Sub btnOK_Click()
         ' Get selected resources
         Set SelectedResource1 = ActiveProject.Resources(ComboBox1.ListIndex + 1)
         Set SelectedResource2 = ActiveProject.Resources(ComboBox2.ListIndex + 1)
+        ReplaceAll = CheckBox1
         Me.Hide
         
         ' Call the ReplaceResource procedure and pass the selected resources
-        ReplaceResource SelectedResource1, SelectedResource2
+        ReplaceResource SelectedResource1, SelectedResource2, ReplaceAll
     End If
 End Sub
 
